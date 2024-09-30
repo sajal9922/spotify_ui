@@ -14,6 +14,7 @@ const App = () => {
   const accessToken = useAccessTokenStore((state) => state.accessToken);
   const expiresIn = useAccessTokenStore((state) => state.expiresIn);
   const error = useAccessTokenStore((state) => state.error);
+
   useEffect(() => {
     // Extract the access token from the URL fragment (hash)
     const hash = window.location.hash.substring(1).split('&');
@@ -26,13 +27,13 @@ const App = () => {
     if (hashObject.error) {
       setError(hashObject.error);
     } else {
-      console.log('hashObject::', hashObject);
+      // console.log('hashObject::', hashObject);
       setAccessToken(hashObject.access_token);
       setExpiresIn(hashObject.expires_in);
       setTokenType(hashObject.token_type);
       setState(hashObject.state);
     }
-  }, []);
+  }, [accessToken]);
 
   return <>{accessToken ? <SpotifyUi /> : <Login />}</>;
 };

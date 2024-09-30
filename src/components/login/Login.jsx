@@ -43,7 +43,7 @@ const Login = () => {
     const spotifyAuthUrl = `${apiUrl}?${params.toString()}`;
     window.location.href = spotifyAuthUrl;
 
-    console.log('Spotify Auth URL:', spotifyAuthUrl);
+    // console.log('Spotify Auth URL:', spotifyAuthUrl);
   };
 
   return (

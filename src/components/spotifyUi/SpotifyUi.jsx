@@ -1,11 +1,24 @@
-import React from 'react';
-
+import Body from '../body/Body';
+import Footer from '../footer/footer';
+import Navbar from '../navbar/Navbar';
+import Sidebar from '../sidebar/Sidebar';
+import './spotifyUi.css';
 const SpotifyUi = () => {
   return (
-    <>
-      <h1>Spotify UI</h1>
-      <div>Genetating front end code</div>
-    </>
+    <div className="spotify-container">
+      <div className="spotify-body">
+        <Sidebar />
+        <div className="body">
+          <Navbar />
+          <div className="body-content">
+            <Body />
+          </div>
+        </div>
+      </div>
+      <div className="spotify-footer">
+        <Footer />
+      </div>
+    </div>
   );
 };
 
