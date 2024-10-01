@@ -1,6 +1,7 @@
 import { IoLibrary } from 'react-icons/io5';
 import { MdHomeFilled, MdSearch } from 'react-icons/md';
 import './sidebar.css';
+import Playlist from '../playlist/Playlist';
 
 const Sidebar = () => {
   return (
@@ -27,6 +28,7 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
+      <Playlist />
     </div>
   );
 };
