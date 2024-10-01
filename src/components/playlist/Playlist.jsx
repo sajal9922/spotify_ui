@@ -38,14 +38,6 @@ const Playlist = () => {
             </div>
           );
         })}
-        {playlists.map((playlist) => {
-          return (
-            <div key={playlist.id} className="playlist-item">
-              <img src={playlist.images[0].url} alt={playlist.name} />
-              <p>{playlist.name}</p>
-            </div>
-          );
-        })}
       </div>
     </div>
   );
