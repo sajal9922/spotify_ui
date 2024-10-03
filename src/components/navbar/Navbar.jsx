@@ -1,11 +1,13 @@
+import useAccessTokenStore from '../../store/accessTokenStore';
 import useUserInfoStore from '../../store/userInfoStore';
 import './Navbar.css';
 import { FaSearch } from 'react-icons/fa';
 
-const Navbar = () => {
+const Navbar = ({ navBackground }) => {
   const userInfo = useUserInfoStore((state) => state.userInfo);
+
   return (
-    <div className="nav-bar">
+    <div className={`nav-bar ${navBackground ? 'scrolling-up' : ''}`}>
       <div className="search-bar">
         <FaSearch />
         <input type="text" placeholder="Search for songs, artists, albums" />

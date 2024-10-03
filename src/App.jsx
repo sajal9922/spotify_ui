@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Login from './components/login/Login';
 import SpotifyUi from './components/spotifyUi/SpotifyUi';
 import useAccessTokenStore from './store/accessTokenStore';
+import useUserInfoStore from './store/userInfoStore';
 
 const App = () => {
   const setAccessToken = useAccessTokenStore((state) => state.setAccessToken);
@@ -15,6 +17,7 @@ const App = () => {
   const expiresIn = useAccessTokenStore((state) => state.expiresIn);
   const error = useAccessTokenStore((state) => state.error);
 
+  const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
   useEffect(() => {
     // Extract the access token from the URL fragment (hash)
     const hash = window.location.hash.substring(1).split('&');
@@ -27,13 +30,21 @@ const App = () => {
     if (hashObject.error) {
       setError(hashObject.error);
     } else {
-      // console.log('hashObject::', hashObject);
       setAccessToken(hashObject.access_token);
       setExpiresIn(hashObject.expires_in);
       setTokenType(hashObject.token_type);
       setState(hashObject.state);
     }
-  }, [accessToken]);
+  }, [
+    accessToken,
+    expiresIn,
+    error,
+    setAccessToken,
+    setExpiresIn,
+    setTokenType,
+    setState,
+    setError,
+  ]);
 
   return <>{accessToken ? <SpotifyUi /> : <Login />}</>;
 };
