@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BsClockFill } from 'react-icons/bs';
+
 import axios from 'axios';
 import useAccessTokenStore from '../../store/accessTokenStore';
 import './Body.css';
@@ -37,9 +38,15 @@ const Body = ({ headerBackground }) => {
           tracks: response.data.tracks.items.map((item) => ({
             trackId: item.track.id,
             trackName: item.track.name,
-            trackArtists: item.track.artists
-              .map((artist) => artist.name)
-              .join(', '),
+            trackArtists: (() => {
+              const artists = item.track.artists
+                .slice(0, 5)
+                .map((artist) => artist.name);
+              const moreThanFive = item.track.artists.length > 5;
+              return moreThanFive
+                ? `${artists.join(', ')}...`
+                : artists.join(', ');
+            })(),
             trackDuration: item.track.duration_ms,
             image: item.track.album.images[2].url,
             album: item.track.album.name,

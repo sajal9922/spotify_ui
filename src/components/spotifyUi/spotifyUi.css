@@ -11,10 +11,11 @@
   height: 100%;
   width: 100%;
   background: linear-gradient(transparent, #000000);
-  background-color: #205764;
+  background-color: #a01705;
 }
 .body {
   height: 100%;
   width: 100%;
   overflow: auto;
+  scrollbar-width: none;
 }

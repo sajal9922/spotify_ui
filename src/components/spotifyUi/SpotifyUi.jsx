@@ -22,7 +22,7 @@ const SpotifyUi = () => {
     bodyRef.current.scrollTop > 30
       ? setNavBackground(true)
       : setNavBackground(false);
-    bodyRef.current.scrollTop > 286
+    bodyRef.current.scrollTop > 260
       ? setHeaderBackground(true)
       : setHeaderBackground(false);
   };
