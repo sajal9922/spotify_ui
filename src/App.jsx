@@ -35,16 +35,16 @@ const App = () => {
       setTokenType(hashObject.token_type);
       setState(hashObject.state);
     }
-  }, [
-    accessToken,
-    expiresIn,
-    error,
-    setAccessToken,
-    setExpiresIn,
-    setTokenType,
-    setState,
-    setError,
-  ]);
+  }, [accessToken, setAccessToken]);
+  useEffect(() => {
+    if (expiresIn) {
+      const timeout = setTimeout(() => {
+        setAccessToken(null);
+      }, (expiresIn - 1) * 1000); // Set access token to null 1 second before it expires
+
+      return () => clearTimeout(timeout); // Cleanup timeout on component unmount or expiresIn change
+    }
+  }, [expiresIn, setAccessToken]);
 
   return <>{accessToken ? <SpotifyUi /> : <Login />}</>;
 };
