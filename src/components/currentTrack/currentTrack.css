@@ -10,7 +10,7 @@
 .current-track-info {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 .current-track-name {
   font-size: 1.2em;

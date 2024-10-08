@@ -1,0 +1,29 @@
+.player-control-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
+}
+
+.player-control-icon {
+  color: #b3b3b3;
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.play,
+.pause {
+  color: #fff;
+}
+
+.prev,
+.next,
+.play,
+.pause {
+  font-size: 40px;
+}
+.player-control-icon:hover {
+  color: #fff;
+}
