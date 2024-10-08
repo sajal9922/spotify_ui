@@ -35,7 +35,7 @@ const App = () => {
       setTokenType(hashObject.token_type);
       setState(hashObject.state);
     }
-  }, [accessToken, setAccessToken]);
+  }, []);
   useEffect(() => {
     if (expiresIn) {
       const timeout = setTimeout(() => {
@@ -44,7 +44,7 @@ const App = () => {
 
       return () => clearTimeout(timeout); // Cleanup timeout on component unmount or expiresIn change
     }
-  }, [expiresIn, setAccessToken]);
+  }, [expiresIn]);
 
   return <>{accessToken ? <SpotifyUi /> : <Login />}</>;
 };
