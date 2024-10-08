@@ -35,7 +35,7 @@ const CurrentTrack = () => {
             duration: item.duration_ms,
           };
           setCurrentlyPlaying(track);
-          console.log('Currently playing:', track);
+          // console.log('Currently playing:', track);
         } else {
           setCurrentlyPlaying(null);
         }
@@ -55,8 +55,25 @@ const CurrentTrack = () => {
   if (loading) {
     return <div className="current-track-container">Loading...</div>;
   }
+  console.log('Currently playing:', currentlyPlaying);
+  return (
+    <div className="current-track-container">
+      {currentlyPlaying && (
+        <div className="current-track">
+          <div className="current-track-image">
+            <img src={currentlyPlaying.image} alt={currentlyPlaying.name} />
+          </div>
+          <div className="current-track-info">
+            <span className="current-track-name">{currentlyPlaying.name}</span>
 
-  return <div className="current-track-container">CurrentTrack</div>;
+            <span className="current-track-artists">
+              {currentlyPlaying.artists}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default CurrentTrack;

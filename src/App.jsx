@@ -11,11 +11,9 @@ const App = () => {
   const setTokenType = useAccessTokenStore((state) => state.setTokenType);
   const setState = useAccessTokenStore((state) => state.setState);
   const setError = useAccessTokenStore((state) => state.setError);
-  const state = useAccessTokenStore((state) => state.state);
-  const tokenType = useAccessTokenStore((state) => state.tokenType);
+
   const accessToken = useAccessTokenStore((state) => state.accessToken);
   const expiresIn = useAccessTokenStore((state) => state.expiresIn);
-  const error = useAccessTokenStore((state) => state.error);
 
   const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
   useEffect(() => {

@@ -1,0 +1,21 @@
+.current-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.current-track-image img {
+  height: 80px;
+}
+
+.current-track-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.current-track-name {
+  font-size: 1.2em;
+}
+.current-track-artists {
+  font-size: 0.8em;
+  color: #b3b3b3;
+}
