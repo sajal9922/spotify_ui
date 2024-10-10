@@ -11,6 +11,7 @@ const usePlaylistStore = create((set) => ({
   setSelectedPlaylist: (selectedPlaylist) => set({ selectedPlaylist }),
   setCurrentlyPlaying: (track) => set((state) => ({ currentlyPlaying: track })),
   setPlayerState: (state) => set({ playerState: state }),
+  setSelectedPlaylistId: (id) => set({ selectedPlaylistId: id }),
 }));
 
 export default usePlaylistStore;

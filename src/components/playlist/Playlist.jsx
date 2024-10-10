@@ -7,6 +7,9 @@ const Playlist = () => {
   const accessToken = useAccessTokenStore((state) => state.accessToken);
   const setPlaylists = usePlaylistStore((state) => state.setPlaylists);
   const playlists = usePlaylistStore((state) => state.playlists);
+  const setSelectedPlaylistId = usePlaylistStore(
+    (state) => state.setSelectedPlaylistId
+  );
   useEffect(() => {
     const getPlaylist = async () => {
       const response = await axios.get(
@@ -26,13 +29,21 @@ const Playlist = () => {
     };
     getPlaylist();
   }, [accessToken, setPlaylists]);
+
+  const handlePlaylistChange = (selectedPlaylistId) => {
+    setSelectedPlaylistId(selectedPlaylistId);
+  };
   return (
     <div className="playlist-container">
       <h2>Your Playlists</h2>
       <div className="playlist">
         {playlists.map((playlist) => {
           return (
-            <div key={playlist.id} className="playlist-item">
+            <div
+              key={playlist.id}
+              className="playlist-item"
+              onClick={() => handlePlaylistChange(playlist.id)}
+            >
               <img src={playlist.images[0].url} alt={playlist.name} />
               <p>{playlist.name}</p>
             </div>

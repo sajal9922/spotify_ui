@@ -1,5 +1,6 @@
 import CurrentTrack from '../currentTrack/CurrentTrack';
 import PlayerControl from '../playerControl/PlayerControl';
+import Volume from '../volumeControl/Volume';
 import './footer.css';
 
 const Footer = () => {
@@ -7,6 +8,7 @@ const Footer = () => {
     <div className="footer-container">
       <CurrentTrack />
       <PlayerControl />
+      <Volume />
     </div>
   );
 };

@@ -55,7 +55,7 @@ const CurrentTrack = () => {
   if (loading) {
     return <div className="current-track-container">Loading...</div>;
   }
-  console.log('Currently playing:', currentlyPlaying);
+
   return (
     <div className="current-track-container">
       {currentlyPlaying && (

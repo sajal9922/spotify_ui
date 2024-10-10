@@ -49,6 +49,7 @@
 }
 .tracks .track-row:hover {
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 .tracks .track-row .col {
   display: flex;

@@ -13,7 +13,11 @@ const Body = ({ headerBackground }) => {
   );
   const selectedPlaylist = playlistStore((state) => state.selectedPlaylist);
   const [loading, setLoading] = useState(true);
-
+  const setPlayerState = playlistStore((state) => state.setPlayerState);
+  const setCurrentlyPlaying = playlistStore(
+    (state) => state.setCurrentlyPlaying
+  );
+  const currentlyPlaying = playlistStore((state) => state.currentlyPlaying);
   useEffect(() => {
     const getPlaylist = async () => {
       try {
@@ -30,7 +34,7 @@ const Body = ({ headerBackground }) => {
 
         const selectedPlaylist = {
           playlistId: response.data.id,
-          playlisenName: response.data.name,
+          playlistName: response.data.name,
           playlistDescription: response.data.description.startsWith('<a')
             ? ''
             : response.data.description,
@@ -67,16 +71,59 @@ const Body = ({ headerBackground }) => {
     }
   }, [accessToken, selectedPlaylistId, setSelectedPlaylist]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   const msToMinutesAndSeconds = (ms) => {
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
-
+  const playTrack = async (
+    trackId,
+    trackName,
+    album,
+    trackDuration,
+    trackArtists,
+    image,
+    contextUri,
+    trackNumber
+  ) => {
+    try {
+      const response = await axios.put(
+        'https://api.spotify.com/v1/me/player/play',
+        {
+          context_uri: contextUri,
+          offset: { position: trackNumber - 1 },
+          position_ms: 0,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (response.status === 204) {
+        const track = {
+          trackId,
+          trackName,
+          album,
+          trackDuration,
+          trackArtists,
+          image,
+          contextUri,
+          trackNumber,
+        };
+        setCurrentlyPlaying(track);
+        setPlayerState(true);
+      } else {
+        setPlayerState(false);
+      }
+    } catch (error) {
+      console.error('Error playing track:', error);
+    }
+  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="body-container">
       {selectedPlaylist && (
@@ -90,9 +137,10 @@ const Body = ({ headerBackground }) => {
             </div>
             <div className="details">
               <span className="type">PLAYLIST</span>
-              <h2 className="title">Coke Studio বাংলা</h2>
+
+              <h2 className="title">{selectedPlaylist.playlistName}</h2>
               <p className="description">
-                Collection of all the songs from Coke Studio Bangla.
+                {selectedPlaylist.playlistDescription}
               </p>
             </div>
           </div>
@@ -131,13 +179,29 @@ const Body = ({ headerBackground }) => {
                   index
                 ) => {
                   return (
-                    <div key={trackId} className="track-row">
+                    <div
+                      key={trackId}
+                      className="track-row"
+                      onClick={() =>
+                        playTrack(
+                          trackId,
+                          trackName,
+                          album,
+                          trackDuration,
+                          trackArtists,
+                          image,
+                          contextUri,
+                          trackNumber
+                        )
+                      }
+                    >
                       <div className="col">
                         <span>{index + 1}</span>
                       </div>
                       <div className="col detail">
                         <div className="image">
                           <img src={image} alt="track" />
+                          {console.log(selectedPlaylist.tracks)}
                         </div>
                         <div className="info">
                           <span className="name">{trackName}</span>
