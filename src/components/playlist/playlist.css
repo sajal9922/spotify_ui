@@ -39,6 +39,7 @@
 
 .playlist-item:hover {
   background-color: #333;
+  cursor: pointer;
 }
 
 .playlist-item img {

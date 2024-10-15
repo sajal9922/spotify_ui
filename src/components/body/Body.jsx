@@ -103,14 +103,10 @@ const Body = ({ headerBackground }) => {
       );
       if (response.status === 204) {
         const track = {
-          trackId,
-          trackName,
-          album,
-          trackDuration,
-          trackArtists,
-          image,
-          contextUri,
-          trackNumber,
+          name: trackName,
+          artists: trackArtists,
+          image: image,
+          duration: trackDuration,
         };
         setCurrentlyPlaying(track);
         setPlayerState(true);
@@ -198,10 +194,10 @@ const Body = ({ headerBackground }) => {
                       <div className="col">
                         <span>{index + 1}</span>
                       </div>
+
                       <div className="col detail">
                         <div className="image">
                           <img src={image} alt="track" />
-                          {console.log(selectedPlaylist.tracks)}
                         </div>
                         <div className="info">
                           <span className="name">{trackName}</span>
