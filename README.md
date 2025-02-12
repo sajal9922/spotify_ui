@@ -66,3 +66,7 @@ This project is a Spotify UI clone built with React and Vite. It allows users to
    npm run dev
    ```
 5. **Open the application**: Open your browser and navigate to http://localhost:5173.
+
+## License
+
+This project is licensed under the MIT License.
