@@ -29,6 +29,16 @@ This project is a Spotify UI clone built with React and Vite. It allows users to
 - **Playback Control**: Play, pause, skip tracks, and control volume.
 - **Current Track**: Display the currently playing track.
 
+## Showcase
+
+### Login Screen
+
+![Login Screen](./src/assets/Login.png)
+
+### Player Screen
+
+![Player Screen](./src/assets/Player.png)
+
 ## Running the Project Locally
 
 ### Prerequisites
